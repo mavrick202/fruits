@@ -218,7 +218,32 @@
 					}
 				}]
 			}
-		}
+		},
+		"WebServer": {
+          "Type": "AWS::EC2::Instance",  
+          "Properties": {
+          "ImageId"            : "ami-0080e4c5bc078760e",
+          "InstanceType"       : "t2.micro",
+          "KeyName"            : "LaptopKey",
+          "NetworkInterfaces" : [{
+          "AssociatePublicIpAddress" : "true",
+          "DeviceIndex"              : "0",
+          "DeleteOnTermination"      : "true",
+          "SubnetId"                 : {"Ref" : "PublicSubnet"},
+          "GroupSet"                 : [ "sg-0a6225fc2272daaa3" ]
+		  }],
+		  "Tags": [{
+					"Key": "Name",
+					"Value": "FRUITS-DEV-SERVER-1"
+				},
+				{
+					"Key": "CloudFormationStack",
+					"Value": {
+						"Ref": "AWS::StackId"
+					}
+				}]
+      }
+    }
 	},
 	"Outputs": {
 		"VPCId": {
